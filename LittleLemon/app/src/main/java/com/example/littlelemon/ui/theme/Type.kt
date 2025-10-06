@@ -43,7 +43,12 @@ val Typography = Typography(
     bodySmall = TextStyle(
         fontFamily = Karla,
         fontSize = 18.sp,
-        fontWeight = FontWeight.Medium
+        fontWeight = FontWeight.Medium,
+    ),
+    //Paragraph
+    displaySmall = TextStyle(
+        fontFamily = Karla,
+        fontSize = 16.sp,
     )
 )
 

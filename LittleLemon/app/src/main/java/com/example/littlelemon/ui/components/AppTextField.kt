@@ -1,4 +1,4 @@
-package com.example.littlelemon.ui.theme.components
+package com.example.littlelemon.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme

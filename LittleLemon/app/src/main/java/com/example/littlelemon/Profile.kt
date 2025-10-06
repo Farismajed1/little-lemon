@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.littlelemon.ui.theme.LittleLemonTheme
-import com.example.littlelemon.ui.theme.components.AppTextField
+import com.example.littlelemon.ui.components.AppTextField
 
 @Composable
 fun Profile(navController: NavHostController?, context: Context){
