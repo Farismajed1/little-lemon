@@ -27,7 +27,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -39,15 +38,24 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.example.littlelemon.ui.theme.LittleLemonTheme
 
 @Composable
 fun Home(navController: NavHostController, dishes: List<RoomEntity>) {
+
+    var searchPhrase by remember { mutableStateOf(TextFieldValue("")) }
+
+    val menuItems = if(searchPhrase.text.isBlank()) {
+        dishes
+    } else {
+        dishes.filter {
+            it.title.contains(searchPhrase.text, ignoreCase = true)
+        }
+    }
+
     Column(
         Modifier
             .fillMaxSize()
@@ -69,7 +77,7 @@ fun Home(navController: NavHostController, dishes: List<RoomEntity>) {
             Image(
                 modifier = Modifier
                     .size(65.dp)
-                    .clickable(onClick = { navController!!.navigate(ProfileScreen.route) }),
+                    .clickable(onClick = { navController.navigate(ProfileScreen.route) }),
                 painter = painterResource(id = R.drawable.profile),
                 contentDescription = "Profile logo",
             )
@@ -111,7 +119,6 @@ fun Home(navController: NavHostController, dishes: List<RoomEntity>) {
                     contentDescription = "Hero Image"
                 )
             }
-            var searchPhrase by remember { mutableStateOf(TextFieldValue("")) }
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -145,7 +152,7 @@ fun Home(navController: NavHostController, dishes: List<RoomEntity>) {
                 color = Color(0xFF000000)
             )
             LazyColumn {
-                items(dishes) { dish ->
+                items(menuItems) { dish ->
                     DishItem(
                         title = dish.title,
                         description = dish.description,
