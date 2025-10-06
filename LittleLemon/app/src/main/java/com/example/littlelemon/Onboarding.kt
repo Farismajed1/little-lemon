@@ -26,8 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.littlelemon.ui.theme.LittleLemonTheme
-import com.example.littlelemon.ui.theme.components.AppTextField
-import com.example.littlelemon.ui.theme.components.Header
+import com.example.littlelemon.ui.components.AppTextField
+import com.example.littlelemon.ui.components.Header
 
 @Composable
 fun Onboarding(navController: NavHostController?, context: Context) {

@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("kotlin-kapt")
+    kotlin("plugin.serialization") version "1.9.10"
 }
 
 android {
@@ -42,6 +44,22 @@ android {
 dependencies {
 
     implementation("androidx.navigation:navigation-compose:2.5.3")
+    implementation(libs.androidx.compose.runtime.livedata)
+
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+
+    implementation("io.ktor:ktor-client-android:2.1.3")
+
+    implementation("com.google.code.gson:gson:2.10")
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.5")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.5")
+
+    implementation("com.github.bumptech.glide:compose:1.0.0-alpha.1")
+
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
